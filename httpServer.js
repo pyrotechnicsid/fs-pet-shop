@@ -2,6 +2,7 @@
 var fs = require('fs');
 var path = require('path');
 var http = require('http');
+var URL = require('url');
 var petsPath = path.join(__dirname, 'pets.json');
 
 
@@ -16,6 +17,7 @@ var server = http.createServer(function (req, res) {
             return res.end('Internal Server Error');
         }
         else if (req.url === '/pets') {
+            console.log(URL.parse(req.url, true));
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.end(petsJSON);
